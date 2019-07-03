@@ -1,3 +1,9 @@
 export function calculateTotalTime(personCrossBridgeTime: number[]): number {
-  return 17;
+  let n=personCrossBridgeTime.length
+  if(n===0){return 0}
+  if(n===1){return personCrossBridgeTime[0]}
+  if(n===2){return personCrossBridgeTime[1]}
+  let left1=personCrossBridgeTime[0]+personCrossBridgeTime[n-1]+calculateTotalTime(personCrossBridgeTime.slice(0,n-1))
+  let left2=personCrossBridgeTime[0]+personCrossBridgeTime[n-1]+2*personCrossBridgeTime[1]+calculateTotalTime(personCrossBridgeTime.slice(0,n-2))
+  return Math.min(left1,left2)
 }
